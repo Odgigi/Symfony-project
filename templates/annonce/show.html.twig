@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce{% endblock %}
+
+{% block body %}
+    <h1>Annonce</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ annonce.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ annonce.titre }}</td>
+            </tr>
+            <tr>
+                <th>Date_creation</th>
+                <td>{{ annonce.dateCreation ? annonce.dateCreation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Type_article</th>
+                <td>{{ annonce.typeArticle }}</td>
+            </tr>
+            <tr>
+                <th>Matiere</th>
+                <td>{{ annonce.matiere }}</td>
+            </tr>
+            <tr>
+                <th>Couleur</th>
+                <td>{{ annonce.couleur }}</td>
+            </tr>
+            <tr>
+                <th>Longueur</th>
+                <td>{{ annonce.longueur }}</td>
+            </tr>
+            <tr>
+                <th>Largeur</th>
+                <td>{{ annonce.largeur }}</td>
+            </tr>
+            <tr>
+                <th>Hauteur</th>
+                <td>{{ annonce.hauteur }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ annonce.etat }}</td>
+            </tr>
+            <tr>
+                <th>Histoire</th>
+                <td>{{ annonce.histoire }}</td>
+            </tr>
+            <tr>
+                <th>Prix_plancher</th>
+                <td>{{ annonce.prixPlancher }}</td>
+            </tr>
+            <tr>
+                <th>Prix_minimum</th>
+                <td>{{ annonce.prixMinimum }}</td>
+            </tr>
+            <tr>
+                <th>Prix_moyen</th>
+                <td>{{ annonce.prixMoyen }}</td>
+            </tr>
+            <tr>
+                <th>Prix_maximum</th>
+                <td>{{ annonce.prixMaximum }}</td>
+            </tr>
+            <tr>
+                <th>Img1</th>
+                <td>{{ annonce.img1 }}</td>
+            </tr>
+            <tr>
+                <th>Img2</th>
+                <td>{{ annonce.img2 }}</td>
+            </tr>
+            <tr>
+                <th>Img3</th>
+                <td>{{ annonce.img3 }}</td>
+            </tr>
+            <tr>
+                <th>Img4</th>
+                <td>{{ annonce.img4 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('annonce_index') }}">back to list</a>
+
+    <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">edit</a>
+
+    {{ include('annonce/_delete_form.html.twig') }}
+{% endblock %}
