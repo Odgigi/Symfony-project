@@ -125,9 +125,21 @@ class Annonce
      */
     private $collec;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="fetiche")
+     */
+    private $feticheUsers;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $annonceUser;
+
     public function __construct()
     {
         $this->notes = new ArrayCollection();
+        $this->feticheUsers = new ArrayCollection();
     }
     
 
@@ -402,6 +414,45 @@ class Annonce
     public function setCollec(?Collec $collec): self
     {
         $this->collec = $collec;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->feticheUsers;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->feticheUsers->contains($user)) {
+            $this->feticheUsers[] = $user;
+            $user->addFetiche($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->feticheUsers->removeElement($user)) {
+            $user->removeFetiche($this);
+        }
+
+        return $this;
+    }
+
+    public function getAnnonceUser(): ?User
+    {
+        return $this->annonceUser;
+    }
+
+    public function setAnnonceUser(?User $user): self
+    {
+        $this->annonceUser = $user;
 
         return $this;
     }

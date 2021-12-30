@@ -62,9 +62,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $notes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Annonce::class, inversedBy="feticheUsers")
+     */
+    private $fetiche;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="annonceUser", orphanRemoval=true)
+     */
+    private $annonces;
+
     public function __construct()
     {
         $this->notes = new ArrayCollection();
+        $this->fetiche = new ArrayCollection();
+        $this->annonces = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -228,6 +240,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($note->getUtilisateur() === $this) {
                 $note->setUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getFetiche(): Collection
+    {
+        return $this->fetiche;
+    }
+
+    public function addFetiche(Annonce $fetiche): self
+    {
+        if (!$this->fetiche->contains($fetiche)) {
+            $this->fetiche[] = $fetiche;
+        }
+
+        return $this;
+    }
+
+    public function removeFetiche(Annonce $fetiche): self
+    {
+        $this->fetiche->removeElement($fetiche);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->setAnnonceUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->removeElement($annonce)) {
+            // set the owning side to null (unless already changed)
+            if ($annonce->getAnnonceUser() === $this) {
+                $annonce->setAnnonceUser(null);
             }
         }
 
