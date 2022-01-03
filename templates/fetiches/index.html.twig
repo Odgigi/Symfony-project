@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce index{% endblock %}
+
+{% block body %}
+    <h1>Annonce index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Date_creation</th>
+                <th>Type_article</th>
+                <th>Matiere</th>
+                <th>Couleur</th>
+                <th>Longueur</th>
+                <th>Largeur</th>
+                <th>Hauteur</th>
+                <th>Etat</th>
+                <th>Histoire</th>
+                <th>Prix_plancher</th>
+                <th>Prix_minimum</th>
+                <th>Prix_moyen</th>
+                <th>Prix_maximum</th>
+                <th>Img1</th>
+                <th>Img2</th>
+                <th>Img3</th>
+                <th>Img4</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for annonce in annonces %}
+            <tr>
+                <td>{{ annonce.id }}</td>
+                <td>{{ annonce.titre }}</td>
+                <td>{{ annonce.dateCreation ? annonce.dateCreation|date('Y-m-d') : '' }}</td>
+                <td>{{ annonce.typeArticle }}</td>
+                <td>{{ annonce.matiere }}</td>
+                <td>{{ annonce.couleur }}</td>
+                <td>{{ annonce.longueur }}</td>
+                <td>{{ annonce.largeur }}</td>
+                <td>{{ annonce.hauteur }}</td>
+                <td>{{ annonce.etat }}</td>
+                <td>{{ annonce.histoire }}</td>
+                <td>{{ annonce.prixPlancher }}</td>
+                <td>{{ annonce.prixMinimum }}</td>
+                <td>{{ annonce.prixMoyen }}</td>
+                <td>{{ annonce.prixMaximum }}</td>
+                <td>{{ annonce.img1 }}</td>
+                <td>{{ annonce.img2 }}</td>
+                <td>{{ annonce.img3 }}</td>
+                <td>{{ annonce.img4 }}</td>
+                <td>
+                    <a href="{{ path('fetiches_show', {'id': annonce.id}) }}">show</a>
+                    <a href="{{ path('fetiches_edit', {'id': annonce.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="20">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('fetiches_new') }}">Create new</a>
+{% endblock %}
