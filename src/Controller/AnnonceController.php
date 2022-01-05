@@ -51,32 +51,32 @@ class AnnonceController extends AbstractController
         ]);
     }
 
-    // #[Route('/{id}/edit', name: 'annonce_edit', methods: ['GET', 'POST'])]
-    // public function edit(Request $request, Annonce $annonce, EntityManagerInterface $entityManager): Response
-    // {
-    //     $form = $this->createForm(AnnonceType::class, $annonce);
-    //     $form->handleRequest($request);
+    #[Route('/{id}/edit', name: 'annonce_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Annonce $annonce, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form->handleRequest($request);
 
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
 
-    //         return $this->redirectToRoute('annonce_index', [], Response::HTTP_SEE_OTHER);
-    //     }
+            return $this->redirectToRoute('annonce_index', [], Response::HTTP_SEE_OTHER);
+        }
 
-    //     return $this->renderForm('annonce/edit.html.twig', [
-    //         'annonce' => $annonce,
-    //         'form' => $form,
-    //     ]);
-    // }
+        return $this->renderForm('annonce/edit.html.twig', [
+            'annonce' => $annonce,
+            'form' => $form,
+        ]);
+    }
 
-    // #[Route('/{id}', name: 'annonce_delete', methods: ['POST'])]
-    // public function delete(Request $request, Annonce $annonce, EntityManagerInterface $entityManager): Response
-    // {
-    //     if ($this->isCsrfTokenValid('delete'.$annonce->getId(), $request->request->get('_token'))) {
-    //         $entityManager->remove($annonce);
-    //         $entityManager->flush();
-    //     }
+    #[Route('/{id}', name: 'annonce_delete', methods: ['POST'])]
+    public function delete(Request $request, Annonce $annonce, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$annonce->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($annonce);
+            $entityManager->flush();
+        }
 
-    //     return $this->redirectToRoute('annonce_index', [], Response::HTTP_SEE_OTHER);
-    // }
+        return $this->redirectToRoute('annonce_index', [], Response::HTTP_SEE_OTHER);
+    }
 }

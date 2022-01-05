@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Annonce{% endblock %}
+{% block title %}User-Annonce{% endblock %}
 
 {% block body %}
 <header class="container-fluid p-5 text-center bg-light">
@@ -51,11 +51,11 @@
     </div>
 </main>
 
-    <a href="{{ path('fetiches_add', {'id': annonce.id}) }}">Fetiche</a> <!--Possibilité pour tout User de mettre en fétiche-->
+    
 
-    <a href="{{ path('annonce_index') }}">back to list</a> <!--Retour à la liste générale des annonces > pour tous-->
+    <a href="{{ path('user_annonces') }}">back to list</a> <!--Retour à la liste générale des annonces > pour tous-->
 
     <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">edit</a> <!--Seul le User-D peut avoir accès à l'edit > assimilé à un admin-->
 
-    <!-- {{ include('annonce/_delete_form.html.twig') }} SURTOUT PAS POSSIBLE POUR TOUT USER DE SUPPRIMER UNE ANNONCE ICI-->
+    <!-- {{ include('annonce/_delete_form.html.twig') }} Le User peut-il supprimer son annonce ici ?-->
 {% endblock %}

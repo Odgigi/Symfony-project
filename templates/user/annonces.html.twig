@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Annonces{% endblock %}
+{% block title %}User-Annonces{% endblock %}
    
 {% block body %}
     
     <header class="container-fluid p-5 text-center bg-light">
-       <h1>OGGIES' - Toutes les Annonces</h1>
+       <h1>Mes Annonces</h1>
     </header> 
 
     <main class="container-fluid p-5">
@@ -33,22 +33,17 @@
                         <li class="list-group-item">Appartient à la collection: {{ annonce.collec }}</li>
                         </ul>
                         <div class="card-body text-center">
-                        <a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="btn btn-secondary">Voir détail</a>
+                        <a href="{{ path('user_annonce', {'id': annonce.id}) }}" class="btn btn-secondary">Voir détail</a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- <a href="{{ path('annonce_show', {'id': annonce.id}) }}">voir</a> // Liens à traiter dans l'admin_annonce pour le User-D-->
-                <!-- <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">modifier</a> --> 
+                <!-- <a href="{{ path('annonce_show', {'id': annonce.id}) }}">voir</a> // Lien à traiter pour le User idem fetiche/user-->
+                <!-- <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">modifier</a> // dans l'admin_annonce ???-->
         
         {% else %}
             <tr>
                 <td colspan="20">no records found</td>
             </tr>
         {% endfor %}
-        </div>
-        <div class="card-body text-center">
-        <a href="{{ path('annonce_new') }}" class="btn btn-success">Déposer une annonce</a> <!--Tout User peut déposer une annonce à partir de l'annonce_index-->
-        </div>
-    </main>
 {% endblock %}

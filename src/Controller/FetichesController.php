@@ -24,13 +24,13 @@ class FetichesController extends AbstractController
         ]);
     }
 
-    // #[Route('/{id}', name: 'fetiches_show', methods: ['GET'])] // affiche le détail d'un fétiche
-    // public function show(Annonce $annonce): Response // se recoupe avec user_fetiche > gelée
-    // {
-    //     return $this->render('fetiches/show.html.twig', [
-    //         'annonce' => $annonce,
-    //     ]);
-    // }
+    #[Route('/{id}', name: 'fetiches_show', methods: ['GET'])] // affiche le détail d'un fétiche
+    public function show(Annonce $annonce): Response // se recoupe avec user_fetiche > gelée
+    {
+        return $this->render('fetiches/show.html.twig', [
+            'annonce' => $annonce,
+        ]);
+    }
 
     /**
      * @Route("/add/{id}", name="fetiches_add", methods={"GET"})

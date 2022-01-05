@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Entity\Annonce;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/user')]
 class UserController extends AbstractController
@@ -51,12 +52,11 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/fetiche', name: 'user_fetiche', methods: ['GET'])] // Détail d'un fétiche user
-    public function userFeticheDetail(): Response
+    #[Route('/fetiche/{id}', name: 'user_fetiche', methods: ['GET'])] // Détail d'un fétiche user
+    public function userFeticheDetail(Annonce $annonce): Response
     {
-        $user = $this->getUser();
         return $this->render('user/fetiche.html.twig', [
-            'annonce' => $user->getFetiche(),
+            'annonce' => $annonce,
         ]);
     }
 
@@ -65,7 +65,15 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
         return $this->render('user/annonces.html.twig', [
-            'annonces' => $user->getAnnonce(),
+            'annonces' => $user->getAnnonces(),
+        ]);
+    }
+
+    #[Route('/annonce/{id}', name: 'user_annonce', methods: ['GET'])] // Détail d'une annonce user
+    public function userAnnonceDetail(Annonce $annonce): Response
+    {
+        return $this->render('user/annonce.html.twig', [
+            'annonce' => $annonce,
         ]);
     }
 
