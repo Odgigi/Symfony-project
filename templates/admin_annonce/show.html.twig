@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Annonce{% endblock %}
+{% block title %}Admin Annonce{% endblock %}
 
 {% block body %}
-    <h1>Annonce</h1>
+    <h1>Annonce User</h1>
 
     <table class="table">
         <tbody>
@@ -33,15 +33,15 @@
             </tr>
             <tr>
                 <th>Longueur</th>
-                <td>{{ annonce.longueur }}</td>
+                <td>{{ annonce.longueur }} cm</td>
             </tr>
             <tr>
                 <th>Largeur</th>
-                <td>{{ annonce.largeur }}</td>
+                <td>{{ annonce.largeur }} cm</td>
             </tr>
             <tr>
                 <th>Hauteur</th>
-                <td>{{ annonce.hauteur }}</td>
+                <td>{{ annonce.hauteur }} cm</td>
             </tr>
             <tr>
                 <th>Etat</th>
@@ -53,19 +53,19 @@
             </tr>
             <tr>
                 <th>Prix_plancher</th>
-                <td>{{ annonce.prixPlancher }}</td>
+                <td>{{ annonce.prixPlancher }} €</td>
             </tr>
             <tr>
                 <th>Prix_minimum</th>
-                <td>{{ annonce.prixMinimum }}</td>
+                <td>{{ annonce.prixMinimum }} €</td>
             </tr>
             <tr>
                 <th>Prix_moyen</th>
-                <td>{{ annonce.prixMoyen }}</td>
+                <td>{{ annonce.prixMoyen }} €</td>
             </tr>
             <tr>
                 <th>Prix_maximum</th>
-                <td>{{ annonce.prixMaximum }}</td>
+                <td>{{ annonce.prixMaximum }} €</td>
             </tr>
             <tr>
                 <th>Img1</th>

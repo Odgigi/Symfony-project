@@ -78,4 +78,5 @@ class AdminUserController extends AbstractController
 
         return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }

@@ -41,6 +41,33 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
+    
+    #[Route('/fetiches', name: 'user_fetiches', methods: ['GET'])] // Liste des fétiches d'un user
+    public function userFeticheIndex(): Response
+    {
+        $user = $this->getUser();
+        return $this->render('user/fetiches.html.twig', [
+            'annonces' => $user->getFetiche(),
+        ]);
+    }
+
+    #[Route('/fetiche', name: 'user_fetiche', methods: ['GET'])] // Détail d'un fétiche user
+    public function userFeticheDetail(): Response
+    {
+        $user = $this->getUser();
+        return $this->render('user/fetiche.html.twig', [
+            'annonce' => $user->getFetiche(),
+        ]);
+    }
+
+    #[Route('/annonces', name: 'user_annonces', methods: ['GET'])] // Liste des annonces d'un user
+    public function userAnnonceIndex(): Response
+    {
+        $user = $this->getUser();
+        return $this->render('user/annonces.html.twig', [
+            'annonces' => $user->getAnnonce(),
+        ]);
+    }
 
     #[Route('/{id}', name: 'user_show', methods: ['GET'])]
     public function show(User $user): Response

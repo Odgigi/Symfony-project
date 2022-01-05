@@ -1,69 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Annonce index{% endblock %}
-
+{% block title %}Annonces{% endblock %}
+   
 {% block body %}
-    <h1>Annonce index</h1>
+    
+    <header class="container-fluid p-5 text-center bg-light">
+       <h1>OGGIES' - Toutes les Annonces</h1>
+    </header> 
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Date_creation</th>
-                <th>Type_article</th>
-                <th>Matiere</th>
-                <th>Couleur</th>
-                <th>Longueur</th>
-                <th>Largeur</th>
-                <th>Hauteur</th>
-                <th>Etat</th>
-                <th>Histoire</th>
-                <th>Prix_plancher</th>
-                <th>Prix_minimum</th>
-                <th>Prix_moyen</th>
-                <th>Prix_maximum</th>
-                <th>Img1</th>
-                <th>Img2</th>
-                <th>Img3</th>
-                <th>Img4</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for annonce in annonces %}
-            <tr>
-                <td>{{ annonce.id }}</td>
-                <td>{{ annonce.titre }}</td>
-                <td>{{ annonce.dateCreation ? annonce.dateCreation|date('Y-m-d') : '' }}</td>
-                <td>{{ annonce.typeArticle }}</td>
-                <td>{{ annonce.matiere }}</td>
-                <td>{{ annonce.couleur }}</td>
-                <td>{{ annonce.longueur }}</td>
-                <td>{{ annonce.largeur }}</td>
-                <td>{{ annonce.hauteur }}</td>
-                <td>{{ annonce.etat }}</td>
-                <td>{{ annonce.histoire }}</td>
-                <td>{{ annonce.prixPlancher }}</td>
-                <td>{{ annonce.prixMinimum }}</td>
-                <td>{{ annonce.prixMoyen }}</td>
-                <td>{{ annonce.prixMaximum }}</td>
-                <td>{{ annonce.img1 }}</td>
-                <td>{{ annonce.img2 }}</td>
-                <td>{{ annonce.img3 }}</td>
-                <td>{{ annonce.img4 }}</td>
-                <td>
-                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}">show</a>
-                    <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">edit</a>
-                </td>
-            </tr>
+    <main class="container-fluid p-5">
+        <div class="row">   
+            {% for annonce in annonces|reverse %}
+                <div class="row col-4 p-3">
+                    <div class="card">
+                        <img src="{{ asset('assets/annonce/' ~ annonce.img1) }}" class="card-img-top" alt="photo principale de {{ annonce.titre }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ annonce.titre }}</h5>
+                            <p>{{ annonce.dateCreation ? annonce.dateCreation|date('d-m-Y') : '' }}</p>
+                            <p class="card-text">{{ annonce.histoire|u.truncate(75, '...', false) }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ annonce.categorie }}</li>
+                        <li class="list-group-item">{{ annonce.typeArticle }}</li>
+                        <li class="list-group-item">{{ annonce.matiere }}</li>
+                        <li class="list-group-item">{{ annonce.couleur }}</li>
+                        <li class="list-group-item">Dimensions (en cm) : L {{ annonce.longueur }} - l {{ annonce.largeur }} - H {{ annonce.hauteur }}</li>
+                        <li class="list-group-item">{{ annonce.etat }}</li>
+                        <li class="list-group-item">Prix plancher : {{ annonce.prixPlancher|number_format(0, ',', ' ') }} €</li>
+                        <li class="list-group-item">Prix minimum : {{ annonce.prixMinimum|number_format(0, ',', ' ') }} €</li>
+                        <li class="list-group-item">Prix moyen : {{ annonce.prixMoyen|number_format(0, ',', ' ') }} €</li>
+                        <li class="list-group-item">Prix maximum : {{ annonce.prixMaximum|number_format(0, ',', ' ') }} €</li>
+                        <li class="list-group-item">Appartient à la collection: {{ annonce.collec }}</li>
+                        </ul>
+                        <div class="card-body text-center">
+                        <a href="#" class="btn btn-secondary">Voir plus</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <a href="{{ path('annonce_show', {'id': annonce.id}) }}">voir</a> // Liens à traiter dans l'admin_annonce pour le User-D
+                <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">modifier</a> -->
+        
         {% else %}
             <tr>
                 <td colspan="20">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('annonce_new') }}">Create new</a>
+        </div>
+        <div class="card-body text-center">
+        <a href="{{ path('annonce_new') }}" class="btn btn-success">Déposer une annonce</a> <!--Tout User peut déposer une annonce à partir de l'annonce_index-->
+        </div>
+    </main>
 {% endblock %}

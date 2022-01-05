@@ -19,6 +19,15 @@ class AnnonceRepository extends ServiceEntityRepository
         parent::__construct($registry, Annonce::class);
     }
 
+    public function findFetichedAnnonce()
+    {
+        return $this->createQueryBuilder('f')
+            ->innerJoin('f.feticheUsers',"u")
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */

@@ -83,6 +83,6 @@ class Categorie
 
     public function __toString()
     {
-        return strval($this->id);
+        return $this->nom;
     }
 }

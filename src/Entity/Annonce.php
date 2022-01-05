@@ -421,12 +421,12 @@ class Annonce
     /**
      * @return Collection|User[]
      */
-    public function getUsers(): Collection
+    public function getFeticheUsers(): Collection
     {
         return $this->feticheUsers;
     }
 
-    public function addUser(User $user): self
+    public function addFeticheUser(User $user): self
     {
         if (!$this->feticheUsers->contains($user)) {
             $this->feticheUsers[] = $user;
@@ -436,7 +436,7 @@ class Annonce
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function removeFeticheUser(User $user): self
     {
         if ($this->feticheUsers->removeElement($user)) {
             $user->removeFetiche($this);
