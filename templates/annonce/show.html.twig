@@ -4,16 +4,19 @@
 
 {% block body %}
 <header class="container-fluid p-5 text-center bg-light">
-    <h1>{{ annonce.titre }}</h1>
+    <h1>Détail de l'annonce</h1>
 </header>
 
-<main class="container-fluid">
-    <div class="row p-5">
-        <div class="col-8 offset-2">
-            <img src="{{ asset('img/annonce/' ~ annonce.img1) }}" alt="photo principale {{ annonce.titre }}" class="w-100">
+<main class="container-fluid p-5">
+    <div class="row">
+        <div class="col-8">
+            <img src="{{ asset('assets/annonce/' ~ annonce.img1) }}" alt="photo principale {{ annonce.titre }}" class="w-100">
             <h2 class="py-3">{{ annonce.titre }}</h2>
             <p>{{ annonce.dateCreation ? annonce.dateCreation|date('d-m-Y') : '' }}</p>
             <p>{{ annonce.histoire }}</p>
+            <p>Par {{ annonce.annonceUser.pseudo }}
+                <a href="mailto:adress@example.fr" class="btn orange">Contacter le dépositaire</a>
+            </p>
             <ul>
                 <li>{{ annonce.categorie }}</li>
                 <li>{{ annonce.typeArticle }}</li>
@@ -30,32 +33,50 @@
                 <li>{{ annonce.collec }}</li>
             </ul>
         </div>
-        {% if annonce.img2 is not null %}
-            <div class="col-4 offset-2">
-                <h2 class="py-3">Autres photos</h2>
-                <img src="{{ asset('img/annonce/' ~ annonce.img2) }}" alt="photo 2 {{ annonce.titre }}" class="w-100">
-            </div>
-        {% endif %}
-
-        {% if annonce.img3 is not null %}
-            <div class="col-4 offset-2">
-                <img src="{{ asset('img/annonce/' ~ annonce.img3) }}" alt="photo 3 {{ annonce.titre }}" class="w-100">
-            </div>
-        {% endif %}
-
-        {% if annonce.img4 is not null %}
-            <div class="col-4 offset-2">
-                <img src="{{ asset('img/annonce/' ~ annonce.img4) }}" alt="photo 4 {{ annonce.titre }}" class="w-100">
-            </div>
-        {% endif %}
+            {% if annonce.img2 is not null %}
+        <div class="col-4">
+            <h2 class="py-3">Autres photos</h2>
+                <img src="{{ asset('assets/annonce/' ~ annonce.img2) }}" alt="photo 2 {{ annonce.titre }}" class="w-100">
+            {% endif %}
+                
+            {% if annonce.img3 is not null %}
+                <img src="{{ asset('assets/annonce/' ~ annonce.img3) }}" alt="photo 3 {{ annonce.titre }}" class="w-100">
+            {% endif %}
+                
+            {% if annonce.img4 is not null %}
+                <img src="{{ asset('assets/annonce/' ~ annonce.img4) }}" alt="photo 4 {{ annonce.titre }}" class="w-100">
+            {% endif %}
+        </div>
     </div>
 </main>
-
-    <a href="{{ path('fetiches_add', {'id': annonce.id}) }}">Fetiche</a> <!--Possibilité pour tout User de mettre en fétiche-->
-
-    <a href="{{ path('annonce_index') }}">back to list</a> <!--Retour à la liste générale des annonces > pour tous-->
-
-    <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">edit</a> <!--Seul le User-D peut avoir accès à l'edit > assimilé à un admin-->
-
-    <!-- {{ include('annonce/_delete_form.html.twig') }} SURTOUT PAS POSSIBLE POUR TOUT USER DE SUPPRIMER UNE ANNONCE ICI-->
+    
+    <div class="container pb-2">
+    {% if app.user %}
+        {% if annonce.annonceUser.email %}
+    <a href="{{ path('annonce_edit', {'id': annonce.id}) }}" class="btn orange">Modifier</a> <!--Exclusif au User dont c'est l'annonce-->
+        {% endif %}
+    {% endif %}
+    </div>
+    <div class="flex justify-content-center">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        
+        {% if affichForm %}
+        
+            {{ include('note/_form.html.twig') }}
+        
+        {% endif %}
+        {% else %}
+        <div style="margin: 5rem">   
+            <a href="{{ path('fetiches_add', {'id': annonce.id}) }}" class="large-button uppercase ff-serif-ital fs-500 text-black btn-info">Mettre en fétiche</a> <!--Possibilité pour tout User de mettre en fétiche-->
+        </div>
+        <div style="margin: 5rem">
+            <a href="{{ path('app_register') }}" class="large-button uppercase ff-serif-ital fs-500 text-black bg-orange">Noter cette annonce</a>
+        </div>
+        
+    {% endif %}
+    </div>
+    <div class="container pt-2">
+    <a href="{{ path('annonce_index') }}" class="btn text-white bg-teal" style="border-color: var(--color-wheat)">Retour à la liste</a> <!--Retour à la liste générale des annonces > pour tous-->
+    </div>
+    
 {% endblock %}

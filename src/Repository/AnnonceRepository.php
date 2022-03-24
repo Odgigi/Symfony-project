@@ -3,8 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Annonce;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Annonce|null find($id, $lockMode = null, $lockVersion = null)
@@ -56,4 +56,21 @@ class AnnonceRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findLastSix()
+    {
+        return $this->createQueryBuilder('ad') // ad est un alias
+            ->orderBy('ad.id', 'DESC') // tri par odre décroissant
+            ->setMaxResults(6) // on sélectionne 6 résultats
+            ->getQuery() // construit la requête
+            ->getResult() // exécute - récupère le(s) résultat(s)
+        ;
+    }
+
+    public function trouverSixDerniers()
+    {
+        $bdd = $this->getEntityManager()->getConnection();
+        $req = $bdd->query('SELECT * FROM annonce ORDER BY id DESC LIMIT 6');
+        // $req->executeQuery();
+        return $req->fetchAllAssociative();
+    }
 }

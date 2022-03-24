@@ -1,0 +1,261 @@
+/* ******************** RESET ******************** */
+    /* Box sizing */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }  
+    
+    /* Reset margins */
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p,
+    figure,
+    picture {
+        margin: 0;
+    }
+
+    /* set up the body */
+    body {
+        line-height: 1.5;
+        min-height: 100vh;
+        background-color:antiquewhite;
+    }
+
+    /* make images easier to work with */
+    img,
+    picture {
+        max-width: 100%;
+        display: block;
+    }
+
+    /* make form elements easier to work with */
+    input,
+    button,
+    textarea,
+    select {
+        font: inherit;
+    }
+
+    /* remove animations for people who've turned them off */
+    @media (prefers-reduced-motion: reduce) {  
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    }
+/* ******************** GLOBAL ******************** */
+    :root {
+        /* colors */
+        --color-black: #000000;
+        --color-grey: #888888;
+        --color-white: #FFFFFF;
+        --color-wheat: #f6d28c;
+        --color-orange: #fd7e14;
+        --color-teal: #20c997;
+
+        /* font-sizes */
+        --fs-900: 9.375rem;
+        --fs-800: 6.25rem;
+        --fs-700: 3.5rem;
+        --fs-600: 2rem;
+        --fs-500: 1.75rem;
+        --fs-400: 1.125rem;
+        --fs-300: 1rem;
+        --fs-200: 0.875rem;
+        
+        /* font-families */
+        --ff-sans-normal: "Krub", sans-serif;
+        --ff-serif-ital: "Sorts Mill Goudy", serif;
+        --ff-sans-cond: "Ubuntu Condensed", sans-serif;
+    }
+
+    /* colors */
+    .bg-black { background-color: var(--color-black); }
+    .bg-grey { background-color: var(--color-grey); }
+    .bg-white { background-color: var(--color-white); }
+    .bg-wheat { background-color: var(--color-wheat); }
+    .bg-orange { background-color: var(--color-orange); }
+    .bg-teal { background-color: var(--color-teal); }
+
+    .text-black { color: var(--color-black); }
+    .text-grey { color: var(--color-grey); }
+    .text-white { color: var(--color-white); }
+    .text-wheat { color: var(--color-wheat); }
+    .text-orange { color: var(--color-orange); }
+    .text-teal { color: var(--color-teal); }
+
+    /* typography */
+    .ff-sans-normal { font-family: var(--ff-sans-normal); }
+    .ff-serif-ital { font-family: var(--ff-serif-ital); }
+    .ff-sans-cond { font-family: var(--ff-sans-cond); }
+    
+    .uppercase { text-transform: uppercase; }
+
+    main a {
+        color: var(--color-orange);
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: var(--color-grey);
+    }
+
+/************************** Utility classes ******************************/
+    .flex {
+        display: flex;
+        gap: var(--gap, 1rem);
+    }
+
+    .grid {
+        display: grid;
+        gap: var(--gap, 1rem);
+    }
+
+    .container {
+        padding-inline: 2em;
+        margin-inline: auto;
+        max-width: 80rem;
+    }
+
+    .large-button {
+        display: grid;
+        z-index: 1;
+        place-items: center;
+        height: 150px;
+        width: auto;
+        padding: 0 2em;
+        text-align: center;
+        border-radius: 50%;
+        aspect-ratio: 1;
+        text-decoration: none;
+    }
+
+    .large-button::after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        height: 200px;
+        width: 200px;
+        background: var(--color-wheat);
+        border-radius: 50%;
+        /* opacity: 0; */
+        transition: transform 500ms ease-in-out;
+    }
+
+    .large-button:hover::after,
+    .large-button:focus::after {
+        /* opacity: 1; */
+        transform: scale(1.5);
+    }
+
+    .orange {
+        background-color: var(--color-orange); /*à défaut du $orange-600*/
+        color: var(--color-white);
+        /* border-color: var(--color-black); */
+    }
+    
+/************************************ NAVBAR ********************************/
+    .navbar {
+        height: 66px;
+        color: var(--color-wheat);
+    }
+
+    /* .dropdown-menu a {
+        color: var(--color-black);
+    } */
+
+    .navbar-item-custom a {
+        color: var(--color-orange);
+        text-decoration: none;
+    }
+    .navbar-cta {
+        color: var(--color-white);
+    }
+    .navbar-cta a:hover {
+        color: var(--color-orange);
+        text-decoration: none;
+    }
+    .navbar .btn {
+        color: var(--color-white);
+        background-color: var(--color-teal);
+        border-color: var(--color-wheat);
+    }
+
+/* ******************** BASE - FOOTER ******************** */
+    .dropdown-divider {
+        border-color: var(--color-white);
+    }
+
+    footer a {
+        color:#f5deb3;
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        color: var(--color-orange);
+    }
+
+    footer {
+        color:#f5deb3;
+        height: 40px;
+        position:absolute;
+        position:sticky;
+        bottom: 0;
+    }
+
+    #copyright {
+        color:black;
+        font-size: 0.75em;
+        font-weight: normal;
+        vertical-align: middle;
+    }
+
+    
+/* ******************** HOME - HEADER ******************** */
+    #home-header {
+        /* width: 100vw;
+        height: 100vh; */
+        /* background-image: url('../assets/background/20210211_083839.jpg'); */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.86;
+    }
+
+    #home-header h1,
+    #home-header h2 {
+        font-family: url('../assets/fonts/lifelogo-easy.ttf');
+        position: absolute;
+        top: 20%;
+        width: 100%;
+        text-align: center;
+        font-weight:600;
+        opacity: 1;
+    }
+
+    #home-header sub {
+        font-family:url('../assets/fonts/glacial-indifference.ttf');
+    }
+
+/* ********************* HOME MAIN ************************* */
+    .card-img-top {
+        max-height: 300px;
+        object-fit: cover;
+    }
+    
+    /* .logo {
+        background-image: url('assets/brand/logo2.jpg') center center no-repeat;
+        background-size:auto 100%;
+        width: 100px;
+        height: 100px;
+        margin:0 auto;
+    } */

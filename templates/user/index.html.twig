@@ -32,7 +32,7 @@
                 <td>{{ user.nom }}</td>
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a> <!--Le user n'aura pas accès à cette page pour modifier ses informations de connexion > que dans profile_user-->
                 </td>
             </tr>
         {% else %}
@@ -43,5 +43,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_new') }}">Create new</a>
+    {# <a href="{{ path('user_new') }}">Create new</a> #} <!--La porte d'entrée pour le User n'est pas le "create_new" mais le "register"-->
 {% endblock %}

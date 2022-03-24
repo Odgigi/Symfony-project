@@ -19,13 +19,14 @@ class FetichesController extends AbstractController
     {
         dump($a->findFetichedAnnonce()); // affichage dev à supprimer
         $user = $this->getUser();
+        /** @var App\Entity\User $user */
         return $this->render('fetiches/index.html.twig', [
             'annonces' => $user->getFetiche(),
         ]);
     }
 
     #[Route('/{id}', name: 'fetiches_show', methods: ['GET'])] // affiche le détail d'un fétiche
-    public function show(Annonce $annonce): Response // se recoupe avec user_fetiche > gelée
+    public function show(Annonce $annonce): Response // se recoupe avec user_fetiche > geler ?
     {
         return $this->render('fetiches/show.html.twig', [
             'annonce' => $annonce,
@@ -38,10 +39,11 @@ class FetichesController extends AbstractController
     public function add(Annonce $annonce, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
+        /** @var App\Entity\User $user */
         $user->addFetiche($annonce); // pour mettre une annonce en fétiche
         $entityManager->flush();
 
-        return $this->redirectToRoute('annonce_show', [ // redirection sur la page courante : annonce
+        return $this->redirectToRoute('annonce_show', [ // redirection sur la page courante ou bien sur user_fetiches ?
             'id' => $annonce->getId()
         ]);
     }
@@ -52,6 +54,7 @@ class FetichesController extends AbstractController
     public function delete(Annonce $annonce, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
+        /** @var App\Entity\User $user */
         $user->removeFetiche($annonce); // pour supprimer un fétiche
         $entityManager->flush();
         

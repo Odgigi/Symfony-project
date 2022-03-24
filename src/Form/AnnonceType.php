@@ -32,18 +32,18 @@ class AnnonceType extends AbstractType
                     'placeholder' => 'Ex. Deco'
                 ]
             ])
-            ->add('matiere',TextType::class, [
+            ->add('matiere', TextType::class, [
                 'label' => 'Matière principale de votre article',
                 'attr' => [
                     'placeholder' => 'Ex. Fer forgé'
                 ]
-            ] )
-            ->add('couleur',TextType::class, [
+            ])
+            ->add('couleur', TextType::class, [
                 'label' => 'Couleur et nuance de votre article',
                 'attr' => [
                     'placeholder' => 'Ex. Jaune orangé'
                 ]
-            ] )
+            ])
             ->add('longueur', IntegerType::class, [
                 'label' => 'Longueur principale en cm',
                 'attr' => [
@@ -102,7 +102,7 @@ class AnnonceType extends AbstractType
             ])
             ->add('img2', FileType::class, [
                 'required' => false,
-                'label' => 'Autres images',
+                'label' => 'Image 2',
                 'mapped' => false,
                 'help' => 'png, jpg, jpeg ou jp2 - 2 Mo maximum',
                 'constraints' => [
@@ -120,7 +120,7 @@ class AnnonceType extends AbstractType
             ])
             ->add('img3', FileType::class, [
                 'required' => false,
-                'label' => 'Image secondaire',
+                'label' => 'Image 3',
                 'mapped' => false,
                 'help' => 'png, jpg, jpeg ou jp2 - 2 Mo maximum',
                 'constraints' => [
@@ -138,7 +138,7 @@ class AnnonceType extends AbstractType
             ])
             ->add('img4', FileType::class, [
                 'required' => false,
-                'label' => 'Image secondaire',
+                'label' => 'Image 4',
                 'mapped' => false,
                 'help' => 'png, jpg, jpeg ou jp2 - 2 Mo maximum',
                 'constraints' => [
@@ -155,7 +155,9 @@ class AnnonceType extends AbstractType
                 ]
             ])
             ->add('categorie')
-            ->add('collec')
+            ->add('collec', null, [
+                'label' => 'Collection',
+            ])
         ;
     }
 

@@ -5,32 +5,32 @@
 {% block body %}
     
     <header class="container-fluid p-5 text-center bg-light">
-       <h1>OGGIES' - Toutes les Annonces</h1>
+       <h1>Toutes les Annonces</h1>
     </header> 
 
     <main class="container-fluid p-5">
-        <div class="row">   
+        <div class="row">  
             {% for annonce in annonces|reverse %}
-                <div class="row col-4 p-3">
-                    <div class="card">
-                        <img src="{{ asset('assets/annonce/' ~ annonce.img1) }}" class="card-img-top" alt="photo principale de {{ annonce.titre }}">
+                <div class="row col-4 d-block mx-auto">
+                    <div class="card-deck text-center">
+                        <img src="{{ asset('assets/annonce/' ~ annonce.img1) }}" class="card-img-top w-100" alt="photo principale de {{ annonce.titre }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ annonce.titre }}</h5>
-                            <p>{{ annonce.dateCreation ? annonce.dateCreation|date('d-m-Y') : '' }}</p>
-                            <p class="card-text">{{ annonce.histoire|u.truncate(75, '...', false) }}</p>
+                            <p class="card-text"><small class="text-muted">Déposée le {{ annonce.dateCreation ? annonce.dateCreation|date('d-m-Y') : '' }}</small> par {{ annonce.annonceUser.pseudo }} </p>
+                            <p class="card-text text-start">{{ annonce.histoire|u.truncate(75, '...', false) }}<a href="{{ path('annonce_show', {'id': annonce.histoire}) }}"> Lire plus</a></p>
                         </div>
                         <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{ annonce.categorie }}</li>
-                        <li class="list-group-item">{{ annonce.typeArticle }}</li>
-                        <li class="list-group-item">{{ annonce.matiere }}</li>
-                        <li class="list-group-item">{{ annonce.couleur }}</li>
-                        <li class="list-group-item">Dimensions (en cm) : L {{ annonce.longueur }} - l {{ annonce.largeur }} - H {{ annonce.hauteur }}</li>
-                        <li class="list-group-item">{{ annonce.etat }}</li>
-                        <li class="list-group-item">Prix plancher : {{ annonce.prixPlancher|number_format(0, ',', ' ') }} €</li>
-                        <li class="list-group-item">Prix minimum : {{ annonce.prixMinimum|number_format(0, ',', ' ') }} €</li>
-                        <li class="list-group-item">Prix moyen : {{ annonce.prixMoyen|number_format(0, ',', ' ') }} €</li>
-                        <li class="list-group-item">Prix maximum : {{ annonce.prixMaximum|number_format(0, ',', ' ') }} €</li>
-                        <li class="list-group-item">Appartient à la collection: {{ annonce.collec }}</li>
+                            <li class="list-group-item">{{ annonce.categorie }}</li>
+                            <li class="list-group-item">{{ annonce.typeArticle }}</li>
+                            <li class="list-group-item">{{ annonce.matiere }}</li>
+                            <li class="list-group-item">{{ annonce.couleur }}</li>
+                            <li class="list-group-item">Dimensions (en cm) : L {{ annonce.longueur }} - l {{ annonce.largeur }} - H {{ annonce.hauteur }}</li>
+                            <li class="list-group-item">{{ annonce.etat }}</li>
+                            <li class="list-group-item">Prix plancher : {{ annonce.prixPlancher|number_format(0, ',', ' ') }} €</li>
+                            <li class="list-group-item">Prix minimum : {{ annonce.prixMinimum|number_format(0, ',', ' ') }} €</li>
+                            <li class="list-group-item">Prix moyen : {{ annonce.prixMoyen|number_format(0, ',', ' ') }} €</li>
+                            <li class="list-group-item">Prix maximum : {{ annonce.prixMaximum|number_format(0, ',', ' ') }} €</li>
+                            <li class="list-group-item">Appartient à la collection : {{ annonce.collec }}</li>
                         </ul>
                         <div class="card-body text-center">
                         <a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="btn btn-secondary">Voir détail</a>
@@ -47,8 +47,10 @@
             </tr>
         {% endfor %}
         </div>
-        <div class="card-body text-center">
-        <a href="{{ path('annonce_new') }}" class="btn btn-success">Déposer une annonce</a> <!--Tout User peut déposer une annonce à partir de l'annonce_index-->
+        <div class="flex justify-content-center">
+            <div style="margin: 5rem">
+            <a href="{{ path('annonce_new') }}" class="large-button uppercase ff-serif-ital fs-500 text-black btn-info">Déposer son annonce</a> <!--Tout User peut déposer une annonce à partir de l'annonce_index-->
+            </div>
         </div>
     </main>
 {% endblock %}

@@ -1,35 +1,66 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark navbar-item-custom">
     <div class="container-fluid">
-        <img src="{{ asset('assets/brand/logo2.jpg') }}" alt="Logo Oggies'" width="65" height="65" class="d-inline-block align-text-top">
+      <img src="{{ asset('assets/brand/logo8.png') }}" alt="Logo8 Fetiche" width="66" height="66" class="d-inline-block align-text-top"/>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav ms-2 me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">S'inscrire</a>
+            <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Home</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Annonces
-            </a>
+              Annonces</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Par catégories</a></li>
-              <li><a class="dropdown-item" href="#">Par types d'objets</a></li>
+              <li><a class="dropdown-item" href="{{ path('annonce_index') }}">Toutes les annonces</a></li>
+              <li><a class="dropdown-item" href="{{ path('categorie_index') }}">Par catégories</a></li>
               <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Par types d'objets</a></li>
               <li><a class="dropdown-item" href="#">Par collections</a></li>
             </ul>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Catégories</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{ path('categorie_index') }}">Toutes les catégories</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Maison</a></li>
+              <li><a class="dropdown-item" href="#">Personne</a></li>
+              <li><a class="dropdown-item" href="#">Loisirs</a></li>
+              <li><a class="dropdown-item" href="#">Arts & Techniques</a></li>
+            </ul>
+          </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link" href="{{ path('contact') }}">Contact</a> 
           </li>
         </ul>
+
+          {# <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ path('app_login') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Espace membres</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><span>En tant que :</span></li>
+              <li><a class="dropdown-item" href="{{ path('admin_user_statut',  {'statut': 'user-I'}) }}">Voir mon profil</a></li>
+              <li><a class="dropdown-item" href="{{ path('user_fetiches') }}">Voir mes fétiches</a></li>
+              <li><a class="dropdown-item" href="{{ path('user_notes') }}">Voir mes évaluations</a></li>
+              <li><a class="dropdown-item" href="{{ path('user_annonces') }}">Voir mes annonces</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{{ path('app_register') }}">Devenir membre</a></li>
+            </ul>
+          </li> #}
+          
+        <span class="navbar-cta me-2">
+        {% if app.user %}
+          <a href="{{ path('account') }}">Mon compte </a> | <a href="{{ path('app_logout') }}"> Déconnexion </a>
+        {% else %}
+          <a href="{{ path('app_login') }}">Connexion </a> | <a href="{{ path('app_register') }}"> S'inscrire </a>
+        {% endif %}
+        </span>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <input class="form-control me-2" type="search" placeholder="Type d'articles" aria-label="Search">
+          <button class="btn btn-outline" type="submit">Rechercher</button>
         </form>
       </div>
     </div>

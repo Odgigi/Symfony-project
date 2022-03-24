@@ -8,6 +8,8 @@
 /public/bundles/
 /var/
 /vendor/
+/AnnonceController copy.php/
+/base.html.twig.html/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###

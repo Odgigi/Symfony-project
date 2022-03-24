@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Note;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\User;
+use App\Entity\Annonce;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Note|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +21,20 @@ class NoteRepository extends ServiceEntityRepository
         parent::__construct($registry, Note::class);
     }
 
+    public function existsForUser(Annonce $annonce, User $user ): bool
+    {
+        $note = $this->findOneBy([
+            'annonce'=> $annonce->getId(),
+            'utilisateur' => $user->getId()
+        ]);
+        if (is_null($note)) {
+            return false;
+        } else {
+            return true;
+        }
+        
+        
+    }
     // /**
     //  * @return Note[] Returns an array of Note objects
     //  */

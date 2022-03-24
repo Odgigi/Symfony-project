@@ -3,28 +3,67 @@
     <head>
         <meta charset="UTF-8">
         <title>
-            {% block title %}Welcome!{% endblock %}
+            {% block title %}base{% endblock %}
         </title>
-        
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;700&family=Sorts+Mill+Goudy:ital@1&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('assets/style.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
         
         {% block stylesheets %}
             
         {% endblock %}
-
-        {% block javascripts %}
-            
-        {% endblock %}
+    
     </head>
+    
     <body>
-        {{ include('navbar.html.twig') }}
+        {% include('navbar.html.twig') %}
         
-        <main>
-            {% block body %}{% endblock %}
+        {% block body %}
+
+        <main class="container-fluid ml-2">
+            
         </main>
+
+        {% endblock %}
+
+        <footer class="container-fluid">
+            <div class="row text-center bg-dark mt-5">
+                <div class="col-5 my-auto">
+                    <h5>Vers</h5>
+                    <div class="dropdown-divider dropdown-item-light"></div>
+                    <p><a href="{{ path('home') }}">Haut de la page</a></p>
+                    <p><a href="#">FAQ</a></p>
+                    <p><a href="{{ path('contact') }}">Contact</a></p>
+                    {# {% if is_granted('ROLE_ADMIN') %}{% endif %} le lien ne s'affichera que si je suis connectée et que j'ai le rôle admin #}
+                    <p><a href="{{ path('admin_annonce_index') }}">Admin</a></p>
+                    
+                </div>
+                <div class="col-2 my-auto">
+                    <img src="{{ asset('assets/brand/logo8.png') }}" alt="logo8 Fétiche" class="w-100">
+                </div>
+                <div class="col-5 my-auto">
+                    <h5>Coordonnées</h5>
+                    <div class="dropdown-divider"></div>
+                    <p>{{ contact_email }}</p>
+                    <p>{{ web_site }}</p>
+                    <p><i class="fab fa-instagram"></i> {{ compte_instagram }}</p>
+                    <p><i class="fab fa-pinterest"></i> {{ compte_pinterest }}</p>
+                </div>
+            </div>
+            <div class="row" id="copyright">
+                <div class="col-12 text-center">
+                    <p>{{ copyright }}</p>
+                </div>
+            </div>
+        </footer>
         
+        {% block javascript %}{% endblock %}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        
     </body>
 </html>

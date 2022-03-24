@@ -7,10 +7,12 @@ s'inscrire : dépositaire, fetichiste, évaluateur
     - roles: json
     - password: string
     - pseudo: string
-    - [statut: json
-        - depositaire: D
+    - statut: string
+        - user: statut par défaut
+        - inscrit: I
         - fetichiste: F
-        - evaluateur: E]
+        - evaluateur: E
+        - depositaire: D
     - prenom: string
     - nom: string
     + notes: Note

@@ -36,6 +36,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+    public function findByStatut($statut){
+        $query = $this->createQueryBuilder('u')
+            ->where('u.statut LIKE :key')
+            ->setParameter('key', '%'.$statut.'%'
+            )->getQuery();
+    
+        return $query->getResult();
+    }
+    
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

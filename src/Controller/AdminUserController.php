@@ -22,6 +22,25 @@ class AdminUserController extends AbstractController
         ]);
     }
 
+    #[Route('/{statut}', name: 'admin_user_statut', methods: ['GET'])]
+    public function indexMembres(string $statut, UserRepository $userRepository): Response
+    {
+        return $this->render('admin_user/index.html.twig', [
+            'users' => $userRepository->findByStatut(
+                $statut
+            ),
+        ]);
+    }
+    // <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    // {# <li><span>En tant que :</span></li> #}
+    // <li><a class="dropdown-item" href="{{ path('admin_user_statut',  {'statut': 'user-I'}) }}">Voir mon profil</a></li>
+    // <li><a class="dropdown-item" href="{{ path('admin_user_statut',  {'statut': 'user-F'}) }}">Voir mes fétiches</a></li>
+    // <li><a class="dropdown-item" href="{{ path('admin_user_statut',  {'statut': 'user-E'}) }}">Voir mes évaluations</a></li>
+    // <li><a class="dropdown-item" href="{{ path('admin_user_statut',  {'statut': 'user-D'}) }}">Voir mes annonces</a></li>
+    // <li><hr class="dropdown-divider"></li>
+    // <li><a class="dropdown-item" href="{{ path('app_register') }}">Devenir membre</a></li>
+    // </ul>
+
     #[Route('/new', name: 'admin_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

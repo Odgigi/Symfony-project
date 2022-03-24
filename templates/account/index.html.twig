@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Compte - Fétiche-A-Vous{% endblock %}
+
+{% block body %}
+
+    <h1>Mon compte</h1>
+    Bienvenue {{ app.user.prenom }} sur votre compte.<br/>
+    C'est dans cet espace que vous allez pouvoir gérer toutes vos informations personnelles.
+
+    <hr>
+    - <a href="{{ path('account_password') }}">Modifier mon mot de passe</a><br/>
+    - Ajouter mes fétiches<br/>
+    - Ajouter mes annonces<br/>
+    - Ajouter mes notes<br/>
+    <hr>
+{% endblock %}

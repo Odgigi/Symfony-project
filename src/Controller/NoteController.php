@@ -22,7 +22,7 @@ class NoteController extends AbstractController
         ]);
     }
 
-    #[Route('/new/{annonce}', name: 'note_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'note_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $note = new Note();

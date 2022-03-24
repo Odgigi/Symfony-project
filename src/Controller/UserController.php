@@ -77,6 +77,15 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/notes', name: 'user_notes', methods: ['GET'])] // Template Liste des notes d'un user à finaliser
+    public function userNoteIndex(): Response
+    {
+        $user = $this->getUser();
+        return $this->render('user/notes.html.twig', [
+            'annonces' => $user->getNotes(),
+        ]);
+    }
+
     #[Route('/{id}', name: 'user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
