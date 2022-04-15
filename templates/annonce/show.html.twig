@@ -2,7 +2,7 @@
 
 {% block title %}Annonce{% endblock %}
 
-{% block body %}
+{% block content %}
 <header class="container-fluid p-5 text-center bg-light">
     <h1>Détail de l'annonce</h1>
 </header>
@@ -57,7 +57,7 @@
         {% endif %}
     {% endif %}
     </div>
-    <div class="flex justify-content-center">
+    <div class="d-flex justify-content-center">
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         
         {% if affichForm %}
@@ -75,7 +75,7 @@
         
     {% endif %}
     </div>
-    <div class="container pt-2">
+    <div class="container p-2">
     <a href="{{ path('annonce_index') }}" class="btn text-white bg-teal" style="border-color: var(--color-wheat)">Retour à la liste</a> <!--Retour à la liste générale des annonces > pour tous-->
     </div>
     

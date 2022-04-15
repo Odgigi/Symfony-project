@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
+    <script type="text/javascript" src="https://cache.consentframework.com/js/pa/30624/c/WnDME/stub" referrerpolicy="unsafe-url" charset="utf-8"></script>
+    <script type="text/javascript" src="https://choices.consentframework.com/js/pa/30624/c/WnDME/cmp" referrerpolicy="unsafe-url" charset="utf-8" async></script>
     <head>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MM2XGZQ');</script>
+        <!-- End Google Tag Manager -->
         <meta charset="UTF-8">
         <title>
             {% block title %}base{% endblock %}
@@ -21,24 +30,26 @@
     </head>
     
     <body>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MM2XGZQ"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
         {% include('navbar.html.twig') %}
-        
         {% block body %}
-
-        <main class="container-fluid ml-2">
-            
-        </main>
-
+        <div class="container marketing mx-5">
+            {% block content %}
+            {% endblock %}
+        </div>
         {% endblock %}
 
         <footer class="container-fluid">
-            <div class="row text-center bg-dark mt-5">
-                <div class="col-5 my-auto">
+            <div class="row text-center bg-dark">
+                <div class="col-5 my-auto pt-2">
                     <h5>Vers</h5>
-                    <div class="dropdown-divider dropdown-item-light"></div>
+                    <div class="dropdown-divider"></div>
                     <p><a href="{{ path('home') }}">Haut de la page</a></p>
                     <p><a href="#">FAQ</a></p>
-                    <p><a href="{{ path('contact') }}">Contact</a></p>
+                    <p><a href="{{ path('c_g_u') }}">CGU</a></p>
                     {# {% if is_granted('ROLE_ADMIN') %}{% endif %} le lien ne s'affichera que si je suis connectée et que j'ai le rôle admin #}
                     <p><a href="{{ path('admin_annonce_index') }}">Admin</a></p>
                     
@@ -46,7 +57,7 @@
                 <div class="col-2 my-auto">
                     <img src="{{ asset('assets/brand/logo8.png') }}" alt="logo8 Fétiche" class="w-100">
                 </div>
-                <div class="col-5 my-auto">
+                <div class="col-5 my-auto pt-2">
                     <h5>Coordonnées</h5>
                     <div class="dropdown-divider"></div>
                     <p>{{ contact_email }}</p>

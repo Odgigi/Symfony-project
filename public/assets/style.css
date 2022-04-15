@@ -23,7 +23,7 @@
     body {
         line-height: 1.5;
         min-height: 100vh;
-        background-color:antiquewhite;
+        background-color:beige;
     }
 
     /* make images easier to work with */
@@ -100,6 +100,10 @@
     
     .uppercase { text-transform: uppercase; }
 
+    .text-center {
+        text-align: center;
+    }
+    
     main a {
         color: var(--color-orange);
         text-decoration: none;
@@ -166,24 +170,29 @@
 /************************************ NAVBAR ********************************/
     .navbar {
         height: 66px;
-        color: var(--color-wheat);
     }
 
     /* .dropdown-menu a {
         color: var(--color-black);
     } */
-
+    .navbar-item-custom {
+        color: var(--color-wheat);
+    }
     .navbar-item-custom a {
+        color: var(--color-orange);
+        text-decoration: none;
+    }
+    .navbar-cta a {
+        color: var(--color-wheat);
+    }
+    .navbar-cta a:hover {
         color: var(--color-orange);
         text-decoration: none;
     }
     .navbar-cta {
         color: var(--color-white);
     }
-    .navbar-cta a:hover {
-        color: var(--color-orange);
-        text-decoration: none;
-    }
+    
     .navbar .btn {
         color: var(--color-white);
         background-color: var(--color-teal);
@@ -202,6 +211,7 @@
 
     footer a:hover {
         color: var(--color-orange);
+        text-decoration: none;
     }
 
     footer {

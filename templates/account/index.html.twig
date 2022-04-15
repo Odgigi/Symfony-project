@@ -2,7 +2,7 @@
 
 {% block title %}Mon Compte - Fétiche-A-Vous{% endblock %}
 
-{% block body %}
+{% block content %}
 
     <h1>Mon compte</h1>
     Bienvenue {{ app.user.prenom }} sur votre compte.<br/>
@@ -10,8 +10,8 @@
 
     <hr>
     - <a href="{{ path('account_password') }}">Modifier mon mot de passe</a><br/>
-    - Ajouter mes fétiches<br/>
-    - Ajouter mes annonces<br/>
-    - Ajouter mes notes<br/>
+    - <a href="#">Voir mes annonces</a><br/>
+    - <a href="#">Mes fétiches</a><br/>
+    - <a href="#">Mes notes</a><br/>
     <hr>
 {% endblock %}

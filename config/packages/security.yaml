@@ -25,7 +25,11 @@ security:
                 path: app_logout
                 # where to redirect after logout
                 # target: app_any_route
-
+            # form_login: // un seul entry point authentication
+                # "login" is the name of the route created in the SecurityController
+                # login_path: login
+                # check_path: login
+            
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
@@ -35,5 +39,14 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # matches /admin/users/*
+        - { path: '^/admin/users', roles: ROLE_SUPER_ADMIN }
+        # matches /admin/* except for anything matching the above rule
+        # require ROLE_ADMIN for /admin*
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        # or require ROLE_ADMIN or IS_AUTHENTICATED_FULLY for /admin*
+        # - { path: '^/admin', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
         - { path: ^/compte, roles: ROLE_USER }
+        # the 'path' value can be any valid regular expression
+        # (this one will match URLs like /api/post/7298 and /api/comment/528491)
+        - { path: ^/api/(post|comment)/\d+$, roles: ROLE_USER }

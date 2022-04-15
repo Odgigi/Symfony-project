@@ -89,7 +89,7 @@ composer require symfony/apache-pack
 ## CONTROLLER
 
 ```
-php bin/console make: controller nom_du_controller (Home)
+php bin/console make:controller nom_du_controller (ex. Home)
 ```
 
 ## BASE DE DONNEES

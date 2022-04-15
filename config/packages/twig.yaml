@@ -2,9 +2,9 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
         contact_email: 'o.girgiel@gmail.com'
-        web_site: 'www.oggies.go.jy.fr'
+        web_site: 'www.fetiche-a-vous.com'
         compte_instagram: Instagram
-        compte_pinterest: autre
+        compte_pinterest: Pinterest
         copyright: 'Copyright © 2021 - Odile Girgiel'
     form_themes: ['bootstrap_5_layout.html.twig']
 
