@@ -19,7 +19,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;700&family=Sorts+Mill+Goudy:ital@1&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('assets/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         
         
@@ -36,15 +36,15 @@
         <!-- End Google Tag Manager (noscript) -->
         {% include('navbar.html.twig') %}
         {% block body %}
-        <div class="container marketing mx-5">
+        <div class="container marketing">
             {% block content %}
             {% endblock %}
         </div>
         {% endblock %}
-
-        <footer class="container-fluid">
+        
+        <footer class="container-fluid mt-5">
             <div class="row text-center bg-dark">
-                <div class="col-5 my-auto pt-2">
+                <div class="col-5 my-auto">
                     <h5>Vers</h5>
                     <div class="dropdown-divider"></div>
                     <p><a href="{{ path('home') }}">Haut de la page</a></p>
@@ -57,7 +57,7 @@
                 <div class="col-2 my-auto">
                     <img src="{{ asset('assets/brand/logo8.png') }}" alt="logo8 Fétiche" class="w-100">
                 </div>
-                <div class="col-5 my-auto pt-2">
+                <div class="col-5 my-auto">
                     <h5>Coordonnées</h5>
                     <div class="dropdown-divider"></div>
                     <p>{{ contact_email }}</p>

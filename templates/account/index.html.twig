@@ -9,9 +9,10 @@
     C'est dans cet espace que vous allez pouvoir gérer toutes vos informations personnelles.
 
     <hr>
-    - <a href="{{ path('account_password') }}">Modifier mon mot de passe</a><br/>
-    - <a href="#">Voir mes annonces</a><br/>
-    - <a href="#">Mes fétiches</a><br/>
-    - <a href="#">Mes notes</a><br/>
+    <ul class="dropdown-menu" aria-labelledby="userDropdown"></ul>
+    <li><a href="{{ path('account_password') }}">Modifier mon mot de passe</a></li>
+    <li><a href="{{ path('user_fetiches') }}">Voir mes fétiches</a></li>
+    <li><a href="{{ path('user_notes') }}">Voir mes notes</a></li>
+    <li><a href="{{ path('user_annonces') }}">Voir mes annonces</a></li>
     <hr>
 {% endblock %}

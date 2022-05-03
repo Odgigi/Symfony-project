@@ -37,7 +37,7 @@
             <tr>
                 <td>{{ annonce.id }}</td>
                 <td>{{ annonce.titre }}</td>
-                <td>{{ annonce.dateCreation ? annonce.dateCreation|date('Y-m-d') : '' }}</td>
+                <td>{{ annonce.dateCreation ? annonce.dateCreation|date('j-m-y') : '' }}</td>
                 <td>{{ annonce.typeArticle }}</td>
                 <td>{{ annonce.matiere }}</td>
                 <td>{{ annonce.couleur }}</td>
@@ -46,7 +46,7 @@
                 <td>{{ annonce.hauteur }}</td>
                 <td>{{ annonce.etat }}</td>
                 <td>{{ annonce.histoire }}</td>
-                <td>{{ annonce.prixPlancher }}</td>
+                <td>{{ (annonce.prixPlancher)|number_format(0, ',', ' ') }} €</td>
                 <td>{{ annonce.prixMinimum }}</td>
                 <td>{{ annonce.prixMoyen }}</td>
                 <td>{{ annonce.prixMaximum }}</td>

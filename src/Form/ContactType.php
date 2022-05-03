@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -16,6 +17,7 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('civilite', ChoiceType::class, [
+                'label' => 'Civilité',
                 'choices' => [
                     'Madame' => 'femme',
                     'Monsieur' => 'homme'
@@ -23,9 +25,14 @@ class ContactType extends AbstractType
                 'expanded' => true
             ])
             ->add('nom')
-            ->add('prenom')
+            ->add('prenom', TextType::class, [
+                'label' => 'Prénom'
+            ])
+
             ->add('email')
-            ->add('subject')
+            ->add('subject', TextType::class, [
+                'label' => 'Objet'
+            ])
             ->add('message', TextareaType::class, [
                 'attr' => [
                 'placeholder' => 'Ex. Ecrivez votre message ici'

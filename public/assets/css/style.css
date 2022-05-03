@@ -24,6 +24,7 @@
         line-height: 1.5;
         min-height: 100vh;
         background-color:beige;
+        position: relative;
     }
 
     /* make images easier to work with */
@@ -37,7 +38,8 @@
     input,
     button,
     textarea,
-    select {
+    select,
+    span {
         font: inherit;
     }
 
@@ -99,10 +101,6 @@
     .ff-sans-cond { font-family: var(--ff-sans-cond); }
     
     .uppercase { text-transform: uppercase; }
-
-    .text-center {
-        text-align: center;
-    }
     
     main a {
         color: var(--color-orange);
@@ -176,14 +174,14 @@
         color: var(--color-black);
     } */
     .navbar-item-custom {
-        color: var(--color-wheat);
+        color: #f5deb3;
     }
     .navbar-item-custom a {
         color: var(--color-orange);
         text-decoration: none;
     }
     .navbar-cta a {
-        color: var(--color-wheat);
+        color: #f5deb3;
     }
     .navbar-cta a:hover {
         color: var(--color-orange);
@@ -204,6 +202,13 @@
         border-color: var(--color-white);
     }
 
+    footer {
+        color:#f5deb3;
+        position: absolute;
+        position: sticky;
+        bottom: 0;
+    }
+    
     footer a {
         color:#f5deb3;
         text-decoration: none;
@@ -214,27 +219,18 @@
         text-decoration: none;
     }
 
-    footer {
-        color:#f5deb3;
-        height: 40px;
-        position:absolute;
-        position:sticky;
-        bottom: 0;
-    }
-
     #copyright {
         color:black;
         font-size: 0.75em;
         font-weight: normal;
-        vertical-align: middle;
     }
 
     
 /* ******************** HOME - HEADER ******************** */
-    #home-header {
-        /* width: 100vw;
-        height: 100vh; */
-        /* background-image: url('../assets/background/20210211_083839.jpg'); */
+    /* #home-header {
+        width: 100vw;
+        height: 100vh;
+        background-image: url('../assets/background/20210211_083839.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -254,7 +250,7 @@
 
     #home-header sub {
         font-family:url('../assets/fonts/glacial-indifference.ttf');
-    }
+    } */
 
 /* ********************* HOME MAIN ************************* */
     .card-img-top {

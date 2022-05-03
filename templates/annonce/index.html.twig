@@ -9,7 +9,13 @@
     </header> 
 
     <main class="container-fluid p-5">
-        <div class="row">  
+        <div class="row">
+            <div class="col-md-3">
+                <h2 class="text-center pb-3">Filtrer</h2>
+                {{ form(form) }}
+            </div>
+            <div class="col-md-9">
+                <div class="row">  
             {% for annonce in annonces|reverse %}
                 <div class="row col-4 d-block mx-auto">
                     <div class="card-deck text-center">
@@ -38,15 +44,16 @@
                     </div>
                 </div>
                 
-                <!-- <a href="{{ path('annonce_show', {'id': annonce.id}) }}">voir</a> // Liens à traiter dans l'admin_annonce pour le User-D-->
-                <!-- <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">modifier</a> --> 
-        
-        {% else %}
-            <tr>
-                <td colspan="20">no records found</td>
-            </tr>
-        {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="20">no records found</td>
+                    </tr>
+                {% endfor %}
+                </div>
+            </div>
         </div>
+
+        
         <div class="flex justify-content-center">
             <div style="margin: 5rem">
             <a href="{{ path('annonce_new') }}" class="large-button uppercase ff-serif-ital fs-500 text-black btn-info">Déposer son annonce</a> <!--Tout User peut déposer une annonce à partir de l'annonce_index-->

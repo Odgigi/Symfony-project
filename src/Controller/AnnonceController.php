@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Note;
+use App\Classe\Search;
 use App\Form\NoteType;
 use App\Entity\Annonce;
+use App\Form\SearchType;
 use App\Form\AnnonceType;
 use App\Repository\NoteRepository;
 use App\Repository\AnnonceRepository;
@@ -17,11 +19,31 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/annonce')]
 class AnnonceController extends AbstractController
 {
-    #[Route('/', name: 'annonce_index', methods: ['GET'])] // Cf. Template "Toutes les annonces" Attention bien rentrer '/' dans le navigateur et non '/index' qui renvoie vers une (fausse) erreur "Param Converter"
-    public function index(AnnonceRepository $annonceRepository): Response
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
+        $this->entityManager = $entityManager;
+    }
+    
+    #[Route('/', name: 'annonce_index', methods: ['GET'])] // Cf. Template "Toutes les annonces" Attention bien rentrer '/' dans le navigateur et non '/index' qui renvoie vers une (fausse) erreur "Param Converter"
+    public function index(Request $request): Response
+    {
+        $search = new Search();
+        $form = $this->createForm(SearchType::class, $search);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $annonces = $this->entityManager->getRepository(Annonce::class)->findWithSearch($search);
+        } else {
+            
+            $annonces = $this->entityManager->getRepository(Annonce::class)->findAll();
+        }
+        
         return $this->render('annonce/index.html.twig', [
-            'annonces' => $annonceRepository->findAll(),
+            'annonces' => $annonces,
+            'form' => $form->createView()
         ]);
     }
 

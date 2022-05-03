@@ -17,7 +17,7 @@ class FetichesController extends AbstractController
     #[Route('/', name: 'fetiches_index', methods: ['GET'])]
     public function index(AnnonceRepository $a): Response // affiche tous les fétiches des Users
     {
-        dump($a->findFetichedAnnonce()); // affichage dev à supprimer
+        // dump($a->findFetichedAnnonce());
         $user = $this->getUser();
         /** @var App\Entity\User $user */
         return $this->render('fetiches/index.html.twig', [
@@ -38,12 +38,17 @@ class FetichesController extends AbstractController
      */
     public function add(Annonce $annonce, EntityManagerInterface $entityManager): Response
     {
-        $user = $this->getUser();
-        /** @var App\Entity\User $user */
-        $user->addFetiche($annonce); // pour mettre une annonce en fétiche
-        $entityManager->flush();
+        if ($this->isGranted('ROLE_USER')) {
+            $user = $this->getUser();
+            /** @var App\Entity\User $user */
+            $user->addFetiche($annonce); // pour mettre une annonce en fétiche
+            $entityManager->flush();
+            $this->addFlash('success', 'Vous avez ajouté cette annonce à vos fétiches');
+        } else {
+            $this->addFlash('danger', 'Veuillez vous connecter pour mettre cette annonce en fétiche');
+        }
 
-        return $this->redirectToRoute('annonce_show', [ // redirection sur la page courante ou bien sur user_fetiches ?
+        return $this->redirectToRoute('annonce_show', [ // redirection sur la page courante ou bien sur user_fetiches
             'id' => $annonce->getId()
         ]);
     }

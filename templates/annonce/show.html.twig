@@ -14,9 +14,11 @@
             <h2 class="py-3">{{ annonce.titre }}</h2>
             <p>{{ annonce.dateCreation ? annonce.dateCreation|date('d-m-Y') : '' }}</p>
             <p>{{ annonce.histoire }}</p>
+            <hr>
             <p>Par {{ annonce.annonceUser.pseudo }}
                 <a href="mailto:adress@example.fr" class="btn orange">Contacter le dépositaire</a>
             </p>
+            <hr>
             <ul>
                 <li>{{ annonce.categorie }}</li>
                 <li>{{ annonce.typeArticle }}</li>
@@ -66,10 +68,17 @@
         
         {% endif %}
         {% else %}
-        <div style="margin: 5rem">   
-            <a href="{{ path('fetiches_add', {'id': annonce.id}) }}" class="large-button uppercase ff-serif-ital fs-500 text-black btn-info">Mettre en fétiche</a> <!--Possibilité pour tout User de mettre en fétiche-->
+        <div style="margin-bottom: 8rem"> 
+            <a href="{{ path('fetiches_add', {'id': annonce.id}) }}" class="large-button uppercase ff-serif-ital fs-500 text-black btn-info">Mettre en fétiche</a> <!--Possibilité pour tout User connecté de mettre en fétiche-->
+            <br>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash_{{ label }} bg-{{ label }} d-flex-start text-light p-3 mt-3 rounded">{{ message }}</div>
+                {% endfor %}
+            {% endfor %}
+            {# <a href="{{ path('add_to_cart', {'id': annonce.id}) }}" class="btn btn-info mt-2">Ajouter au panier</a> #}
         </div>
-        <div style="margin: 5rem">
+        <div style="margin-bottom: 8rem">
             <a href="{{ path('app_register') }}" class="large-button uppercase ff-serif-ital fs-500 text-black bg-orange">Noter cette annonce</a>
         </div>
         

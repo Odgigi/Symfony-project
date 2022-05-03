@@ -61,58 +61,50 @@
     </a>
 </div>
 
-
-
-    {# <header id="home-header" class="container-fluid w-100">
-            <img src="assets/background/20210211_083839.jpg" alt="Navire en corne" width="100%"/>
-        <h1>FETICHE<sub> Valorisez vos objets</sub></h1>
-        </div>
-                
-    </header> #}
     {% block content %}
-    <main class="container my-5">
-        <div class="row my-3">
-            <div class="col-12 text-center">
-                <h2>Dernières annonces</h2>
+        <main class="container my-5">
+            <div class="row my-3">
+                <div class="col-12 text-center">
+                    <h2>Dernières annonces</h2>
+                </div>
             </div>
-        </div>
-
-        <div class="row">
-            {% for annonce in annonces %}
-                <div class="row col-4 d-block mx-auto">
-                    <div class="card">
-                        <img src="{{ asset('assets/annonce/' ~ annonce.img1) }}" id="cardImage" class="card-img-top img-fluid" alt="photo principale de {{ annonce.titre }}">
-                        <div class="card-body">
-                        <h5 class="card-title">{{ annonce.titre }}</h5>
-                        <p>{{ annonce.dateCreation ? annonce.dateCreation|date('d-m-Y') : '' }}</p>
-                        <p class="card-text">{{ annonce.histoire|u.truncate(90, '...', false) }}</p>
-                        </div>
-                        {# <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{ annonce.categorie }}</li>
-                            <li class="list-group-item">{{ annonce.typeArticle }}</li>
-                            <li class="list-group-item">{{ annonce.matiere }}</li>
-                            <li class="list-group-item">{{ annonce.couleur }}</li>
-                            <li class="list-group-item">Dimensions (en cm) : L {{ annonce.longueur }} - l {{ annonce.largeur }} - H {{ annonce.hauteur }}</li>
-                            <li class="list-group-item">{{ annonce.etat }}</li>
-                            <li class="list-group-item">Prix plancher : {{ annonce.prixPlancher|number_format(0, ',', ' ') }} €</li>
-                            <li class="list-group-item">Prix minimum : {{ annonce.prixMinimum|number_format(0, ',', ' ') }} €</li>
-                            <li class="list-group-item">Prix moyen : {{ annonce.prixMoyen|number_format(0, ',', ' ') }} €</li>
-                            <li class="list-group-item">Prix maximum : {{ annonce.prixMaximum|number_format(0, ',', ' ') }} €</li>
-                            <li class="list-group-item">Appartient à la collection : {{ annonce.collec }}</li>
-                        </ul> #}
-                        <div class="card-body text-center">
-                        <a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="btn btn-secondary">Voir détail</a>
+            <div class="row">
+                {% for annonce in annonces %}
+                    <div class="row col-4 d-block mx-auto">
+                        <div class="card">
+                            <img src="{{ asset('assets/annonce/' ~ annonce.img1) }}" id="cardImage" class="card-img-top img-fluid" alt="photo principale de {{ annonce.titre }}">
+                            <div class="card-body">
+                            <h5 class="card-title">{{ annonce.titre }}</h5>
+                            <p>{{ annonce.dateCreation ? annonce.dateCreation|date('d-m-Y') : '' }}</p>
+                            <p class="card-text">{{ annonce.histoire|u.truncate(90, '...', false) }}</p>
+                            </div>
+                            {# <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{{ annonce.categorie }}</li>
+                                <li class="list-group-item">{{ annonce.typeArticle }}</li>
+                                <li class="list-group-item">{{ annonce.matiere }}</li>
+                                <li class="list-group-item">{{ annonce.couleur }}</li>
+                                <li class="list-group-item">Dimensions (en cm) : L {{ annonce.longueur }} - l {{ annonce.largeur }} - H {{ annonce.hauteur }}</li>
+                                <li class="list-group-item">{{ annonce.etat }}</li>
+                                <li class="list-group-item">Prix plancher : {{ annonce.prixPlancher|number_format(0, ',', ' ') }} €</li>
+                                <li class="list-group-item">Prix minimum : {{ annonce.prixMinimum|number_format(0, ',', ' ') }} €</li>
+                                <li class="list-group-item">Prix moyen : {{ annonce.prixMoyen|number_format(0, ',', ' ') }} €</li>
+                                <li class="list-group-item">Prix maximum : {{ annonce.prixMaximum|number_format(0, ',', ' ') }} €</li>
+                                <li class="list-group-item">Appartient à la collection : {{ annonce.collec }}</li>
+                            </ul> #}
+                            <div class="card-body text-center">
+                            <a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="btn btn-secondary">Voir détail</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="flex justify-content-center">
-            <div style="margin: 5rem">
-                <a href="{{ path('annonce_index') }}" class="large-button uppercase ff-sans-normal fs-700 text-black text-decoration-none bg-teal">Voir tout</a>
+                {% endfor %}
             </div>
-        </div>
-    </main>
+            <div class="flex justify-content-center">
+                <div style="margin: 5rem">
+                    <a href="{{ path('annonce_index') }}" class="large-button uppercase ff-sans-normal fs-700 text-black text-decoration-none bg-teal">Voir tout</a>
+                </div>
+            </div>
+        </main>
+    
     {% block javascript %}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
